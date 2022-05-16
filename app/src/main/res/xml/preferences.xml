@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <PreferenceCategory
+        android:title="GITHUB">
+
+        <Preference
+            android:title="跳转至项目地址"
+            android:summary="如果你喜欢此项目，留下你的star吧"
+            android:key="git"/>
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="激活插件">
+
+        <Preference
+            android:title="激活超级管理员"
+            android:summary="授予权限后，设备将重启，请勿重复激活"
+            android:key="su"/>
+
+        <Preference
+            android:title="激活LSP(联想平板)"
+            android:summary="点击跳转至LSP"
+            android:key="lsp"/>
+        <Preference
+            android:title="激活EDXP(华为平板)"
+            android:summary="点击跳转至EDXP"
+            android:key="edxp"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="常用功能">
+
+        <Preference
+            android:title="重启应用"
+            android:summary="实现快速修改并保存更改"
+            android:key="restart_app"/>
+        <Preference
+            android:title="打开终端"
+            android:summary="进入少年派内置终端"
+            android:key="terminal"/>
+        <Preference
+            android:title="一键隐藏"
+            android:summary="自定义时间内伪装成'未破解'"
+            android:key="hide"/>
+        <Preference
+            android:title="一键卸载"
+            android:summary="卸载除了少年派之外的所有软件"
+            android:key="uninstall"/>
+        <Preference
+            android:title="执行命令"
+            android:summary="执行一些简单的命令"
+            android:key="cmd"/>
+        <Preference
+            android:title="应用抽屉"
+            android:summary="快速打开已安装应用"
+            android:key="app_drawer"/>
+        <Preference
+            android:title="清除账号"
+            android:summary="清除少年派数据后在WIFI配置界面点击生效"
+            android:key="clean_account"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="设置弹窗显示界面"
+        android:summary="为避免卡顿，选择最好不超过2项">
+        <CheckBoxPreference
+            android:title="少年派设置界面"
+            android:key="myipad_settings"
+            android:defaultValue="true"/>
+
+        <CheckBoxPreference
+            android:title="少年派日历界面"
+            android:key="myipad_calendar"
+            android:defaultValue="false"/>
+
+
+    </PreferenceCategory>
+    <CheckBoxPreference
+        android:title="自定义活动界面"
+        android:key="custom"
+        android:defaultValue="false"
+        android:summary="随心设置显示界面，点击输入活动名并显示"/>
+
+
+    <PreferenceCategory
+        android:title="基础功能">
+        <CheckBoxPreference
+            android:key="fake_hardware"
+            android:title="伪装硬件信息"
+            />
+        <CheckBoxPreference
+            android:key="fake_version"
+            android:title="伪装版本信息"
+            />
+        <CheckBoxPreference
+            android:key="disable_auto_update"
+            android:title="禁用自动更新"
+            android:summary="解决使用低版本防锁而自动升级版本的问题"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="break_network"
+            android:title="解除网络限制"
+            android:summary="解决部分学校只能使用本校网络的问题"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="cancel_dialog"
+            android:title="对话框可取消"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="outer_pdf"
+            android:title="外部PDF阅读器"
+            android:defaultValue="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="高级功能">
+        <CheckBoxPreference
+            android:key="disable_huawei_mdm"
+            android:title="禁用华为MDM"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="disable_lenovo_mdm"
+            android:title="禁用联想MDM"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="disable_lock_screen"
+            android:title="禁用上课锁屏"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="disable_ssl_pinning"
+            android:title="禁用证书固定"
+            android:summary="开启后可以使用HttpCanary抓取guid等信息"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="disable_usage_upload"
+            android:title="禁用使用上传"
+            android:summary="开启后，少年派所有使用情况无法上传服务端"
+            android:defaultValue="false"/>
+        <CheckBoxPreference
+            android:key="allow_all_permissions"
+            android:title="允许所有权限"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>
