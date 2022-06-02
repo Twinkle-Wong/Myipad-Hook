@@ -86,40 +86,38 @@ public class PreferenceUI extends PreferenceFragment {
             StartActivity("com.netspace.myipad","jackpal.androidterm.Term");
             return false;
         });
-        //一键隐藏
-        final Preference hide = findPreference("hide");
-        hide.setOnPreferenceClickListener(preference -> {
+        //一键禁用
+        final Preference disable = findPreference("disable");
+        disable.setOnPreferenceClickListener(preference -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            final NumberPicker numberPicker = new NumberPicker(getActivity());
-            numberPicker.setMinValue(5);
-            numberPicker.setMaxValue(30);
-            builder.setTitle("请选择你要隐藏的时间(Min)");
-            builder.setView(numberPicker);
+            builder.setTitle("你确定要禁用所有软件吗？");
+            builder.setMessage("除了少年派和本模块将在确定后被停用，需要手动恢复!");
             builder.setPositiveButton("确定", (dialog, whichButton) -> {
-                long time = numberPicker.getValue();
                 List<PackageInfo> packages = getActivity().getPackageManager().getInstalledPackages(0);
                 for (int i = 0; i < packages.size(); i++) {
                     PackageInfo packageInfo = packages.get(i);
-                    // 判断是否为系统级应用， 若不是，禁用该应用（忽略本应用和少年派）
-                    if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && !"com.netspace.hook".equals(packageInfo.applicationInfo.packageName) && !"com.netspace.myipad".equals(packageInfo.applicationInfo.packageName)) {
-//                                deviceManager.setApplicationHide(packageInfo.applicationInfo.packageName);
+                    if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && !"com.netspace.myipad".equals(packageInfo.applicationInfo.packageName) && !"com.netspace.hook".equals(packageInfo.applicationInfo.packageName)) {
                         CommandUtils.runRootCommand("pm disable " + packageInfo.applicationInfo.packageName);
                     }
                 }
-                TimerTask task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        //恢复应用
-                        for (int i = 0; i < packages.size(); i++) {
-                            PackageInfo packageInfo = packages.get(i);
-                            if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && !"com.netspace.hook".equals(packageInfo.applicationInfo.packageName) && !"com.netspace.myipad".equals(packageInfo.applicationInfo.packageName)) {
-                                CommandUtils.runRootCommand("pm enable " + packageInfo.applicationInfo.packageName);
-                            }
-                        }
+            });
+            builder.show();
+            return false;
+        });
+        //一键禁用
+        final Preference enable = findPreference("enable");
+        enable.setOnPreferenceClickListener(preference -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setTitle("恢复应用");
+            builder.setMessage("点击确定恢复所有被停用的应用!");
+            builder.setPositiveButton("确定", (dialog, whichButton) -> {
+                List<PackageInfo> packages = getActivity().getPackageManager().getInstalledPackages(0);
+                for (int i = 0; i < packages.size(); i++) {
+                    PackageInfo packageInfo = packages.get(i);
+                    if ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0 && !"com.netspace.myipad".equals(packageInfo.applicationInfo.packageName) && !"com.netspace.hook".equals(packageInfo.applicationInfo.packageName)) {
+                        CommandUtils.runRootCommand("pm enable " + packageInfo.applicationInfo.packageName);
                     }
-                };
-                Timer timer = new Timer();
-                timer.schedule(task, time * 60000);
+                }
             });
             builder.show();
             return false;

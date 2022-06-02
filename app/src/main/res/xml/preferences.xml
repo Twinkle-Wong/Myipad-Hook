@@ -17,7 +17,7 @@
         android:title="激活插件">
 
         <Preference
-            android:title="激活超级管理员"
+            android:title="授予超级管理员"
             android:summary="授予权限后，设备将重启，请勿重复激活"
             android:key="su"/>
 
@@ -43,9 +43,13 @@
             android:summary="进入少年派内置终端"
             android:key="terminal"/>
         <Preference
-            android:title="一键隐藏"
-            android:summary="自定义时间内伪装成'未破解'"
-            android:key="hide"/>
+            android:title="一键禁用"
+            android:summary="禁用除少年派和模块之外的所有软件"
+            android:key="disable"/>
+        <Preference
+            android:title="一键恢复"
+            android:summary="恢复所有被停用的软件"
+            android:key="enable"/>
         <Preference
             android:title="一键卸载"
             android:summary="卸载除了少年派之外的所有软件"
@@ -54,10 +58,6 @@
             android:title="执行命令"
             android:summary="执行一些简单的命令"
             android:key="cmd"/>
-        <Preference
-            android:title="应用抽屉"
-            android:summary="快速打开已安装应用"
-            android:key="app_drawer"/>
         <Preference
             android:title="清除账号"
             android:summary="清除少年派数据后在WIFI配置界面点击生效"
@@ -122,10 +122,12 @@
         <CheckBoxPreference
             android:key="disable_huawei_mdm"
             android:title="禁用华为MDM"
+            android:summary="默认开启"
             android:defaultValue="true"/>
         <CheckBoxPreference
             android:key="disable_lenovo_mdm"
             android:title="禁用联想MDM"
+            android:summary="默认开启"
             android:defaultValue="true"/>
         <CheckBoxPreference
             android:key="disable_lock_screen"
